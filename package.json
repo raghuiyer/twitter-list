@@ -1,0 +1,11 @@
+{
+  "name": "twitter-lister",
+  "version": "0.0.1",
+  "description": "A module to grab twitter lists",
+  "main": "twitter-list.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raghavendra Iyer",
+  "license": "ISC"
+}
