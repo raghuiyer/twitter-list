@@ -1,0 +1,44 @@
+mixin link(val)
+    li
+        a(href="https://twitter.com/#{val.uri}", target="_blank") #{val.name}
+
+doctype html
+html(lang="en")
+    head
+        title=pageTitle
+        meta( charset='utf-8' )
+        meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+        meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+        link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel="stylesheet")
+        link(href="/css/list.css", rel="stylesheet")
+    body
+        div.container-fluid
+            h1 Showing Public lists of #{screenName}
+            div 
+                a(href="/twitter-authorize")Signin with Twitter
+            div.row
+                div#nav-header.col-md-2
+                    span Lists
+                div#members-header.col-md-2
+                    span Members
+                div#subscribers-header.col-md-2
+                    span Subscribers
+                div#tweets-header.col-md-2
+                    span Tweets
+
+            div.row
+                div#nav.col-md-2                    
+                    ul
+                        each val in resultsJSON
+                            +link(val)
+                div#members.col-md-2
+                    ul
+                        li member 1
+                div#subscribers.col-md-2
+                    ul
+                        li subscriber 1
+                div#tweets.col-md-2
+                    ul
+                        li tweet1
+        script( src='//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js' )
+        script( src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js' )

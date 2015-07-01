@@ -7,5 +7,24 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Raghavendra Iyer",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "connect-domain": "^0.5.0",
+    "connect-timeout": "^1.6.2",
+    "express": "^4.13.0",
+    "express-session": "^1.11.3",
+    "jade": "^1.11.0",
+    "oauth": "^0.9.13",
+    "q": "^1.4.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raghuiyer/twitter-list.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raghuiyer/twitter-list/issues"
+  },
+  "homepage": "https://github.com/raghuiyer/twitter-list#readme"
 }

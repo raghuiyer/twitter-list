@@ -1,6 +1,17 @@
 var config = require('./config'), 
   https = require('https'),
-  Q = require('q');
+  Q = require('q'),
+  crypto = require('crypto'),
+  OAuth = require('oauth');
+
+var oauth = new OAuth.OAuth('https://api.twitter.com/oauth/request_token',
+  'https://api.twitter.com/oauth/access_token',
+  config.consumerKey,
+  config.consumerSecret,
+  '1.0',
+  null,
+  'HMAC-SHA1');
+
 
 var TwitterAuth = function(){
     var encodeSecret = function(consumerKey, consumerSecret) {
@@ -49,8 +60,30 @@ var TwitterAuth = function(){
 
             return deferred.promise;
         },
-        getUserAuthToken : function() {
+        getOAuthRequestToken : function(callbackurl) {
+            var deferred = Q.defer();
+            
+            oauth.getOAuthRequestToken({oauth_callback : callbackurl}, function(err, token, tokenSecret, params){
+                if(err) {
+                    deferred.reject(err);
+                }
 
+                deferred.resolve({token: token, tokenSecret: tokenSecret});
+            });
+
+            return deferred.promise;
+        },
+        getUserAccessToken: function(token, tokenSecret, oauthverifier){
+            var deferred = Q.defer();
+            oauth.getOAuthAccessToken(token, tokenSecret, oauthverifier, function(err, token, tokenSecret, params){
+                if(err) {
+                    deferred.reject(err);
+                }
+
+               deferred.resolve({token: token, tokenSecret: tokenSecret}); 
+            });
+
+            return deferred.promise;
         }
     }
 }

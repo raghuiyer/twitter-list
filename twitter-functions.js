@@ -19,7 +19,7 @@ module.exports = function() {
                       errorMsg += chunk.toString();
                     });
                     listRes.on('end', function(){
-                        deferred.reject( new Error("Unable to connect to get list data." + errorMsg + ", status code: " + listRes.statusCode) );
+                        deferred.reject({ error : JSON.parse(errorMsg).errors , statuscode: listRes.statusCode });
                     });
                 } else {
                   listRes.setEncoding('utf8');
